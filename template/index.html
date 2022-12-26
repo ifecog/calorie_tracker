@@ -65,6 +65,7 @@
                           <th scope="col">Proteins(gm)</th>
                           <th scope="col">Fats(gm)</th>
                           <th scope="col">Calories(gm)</th>
+                          <th scope="col">Remove Item</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,6 +76,7 @@
                           <td>{{consume.food.proteins}}</td>
                           <td>{{consume.food.fats}}</td>
                           <td>{{consume.food.calories}}</td>
+                          <td><a class="btn btn-danger" href="{% url 'delete' consume.id %}">Remove</></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -85,6 +87,7 @@
                             <td id="totalproteins"><b></b></td>
                             <td id="totalfats"><b></b></td>
                             <td id="totalcalories"><b></b></td>
+                            <td id="name"><b>Total(gm)</b></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -127,7 +130,7 @@
 
         var calper = (calories/2000) * 100;
         document.getElementsByClassName('progress-bar')[0].setAttribute("style", "width:"+calper+"%");
-        document.getElementsByClassName('progress-bar')[0].append(calper+"%")
+        document.getElementsByClassName('progress-bar')[0].append(Math.round(calper)+"%")
 
         var total = carbs + proteins + fats;
         var carbsP = Math.round((carbs*100)/total);
