@@ -11,11 +11,11 @@ def index(request):
         consume = Consume(user=user, food=consume)
         consume.save()
         foods = Food.objects.all()
-        consumed_food = Consume.objects.filter(user=request.user)
 
     else:
-        consumed_food = Consume.objects.filter(user=request.user)
         foods = Food.objects.all()
+
+    consumed_food = Consume.objects.filter(user=request.user)
 
     context = {
         'foods': foods,

@@ -13,24 +13,54 @@
     />
   </head>
   <body>
-    <form action="" , method="POST">
-      {% csrf_token %}
-      <select name="food_consumed" id="food_consumed">
-        {% for food in foods %}
-        <option value="{{food.name}}">{{food.name}}</option>
-        {% endfor %}
-      </select>
-      <button type="submit" class="btn btn-primary">Add</button>
-    </form>
-
-    {% for consume in consumed_food %}
-    <ul>
-      <li>
-        {{consume.food}} --> {{consume.food.fats}} --> {{consume.food.proteins}}
-        --> {{consume.food.calories}} --> {{consume.food.carbs}}
-      </li>
-    </ul>
-    {% endfor %}
+  </br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <select class="col-md-6 form-control" name="food_consumed" id="food_consumed">
+                            <option selected>Seletct Food from Menu</option>
+                            {% for food in foods %}
+                            <option value="{{food.name}}">{{food.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="btn btn-success">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    <h4>Today's Consumption</h4>
+                </div>
+                <table id="table" class="table table-striped table-primary">
+                    <thead>
+                        <tr class="table-dark">
+                          <th scope="col">Food Items</th>
+                          <th scope="col">Carbs(gm)</th>
+                          <th scope="col">Proteins(gm)</th>
+                          <th scope="col">Fats(gm)</th>
+                          <th scope="col">Calories(gm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for consume in consumed_food %}
+                        <tr>
+                          <th scope="row">{{consume.food}}</th>
+                          <td>{{consume.food.carbs}}</td>
+                          <td>{{consume.food.proteins}}</td>
+                          <td>{{consume.food.fats}}</td>
+                          <td>{{consume.food.calories}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
