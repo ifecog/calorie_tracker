@@ -11,11 +11,22 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="container">
-        <br>
-        <h4 class="text-center"><b>Calorie Goal</b></h4>
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-dark bg-dark">
+                    <div class="container-fluid">
+                      <span class="navbar-text">
+                        <h4 class="text-center"><b>Calorie Tracker App</b></h4>
+                      </span>
+                    </div>
+                </nav>
+            </div>
+        </div><br>
+        <h4 class="text-center"><b>Calorie Goal(/2000gm)</b></h4>
         <div class="row">
             <div class="col-md-9 offset-1">
                 <div class="progress">
@@ -78,6 +89,17 @@
                     </tfoot>
                 </table>
             </div>
+            <div class="col-md-5 offset-1">
+                <div class="">
+                    <h4><b>Today's Breakdown</b></h4>
+                </div>
+                <div class="card-header text-white bg-dark">
+                    <h4>MacroNutrients Beakdown</h4>
+                </div>
+                <div class="col-md-12">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -106,6 +128,33 @@
         var calper = (calories/2000) * 100;
         document.getElementsByClassName('progress-bar')[0].setAttribute("style", "width:"+calper+"%");
         document.getElementsByClassName('progress-bar')[0].append(calper+"%")
+
+        var total = carbs + proteins + fats;
+        var carbsP = Math.round((carbs*100)/total);
+        var proteinsP = Math.round((proteins*100)/total);
+        var fatsP = Math.round((fats*100)/total);
+        
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+            labels: ['Carbs'+carbsP+'%', ' Proteins'+proteinsP+'%', ' Fats'+fatsP+'%'],
+            datasets: [{
+                label: ['Carbs'+carbsP+'%', ' Proteins'+proteinsP+'%', ' Fats'+fatsP+'%'],
+                data: [carbsP, proteinsP, fatsP],
+                borderWidth: 1
+            }]
+            },
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+
     </script>
 
     <script
