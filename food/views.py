@@ -14,7 +14,6 @@ def index(request):
 
     else:
         foods = Food.objects.all()
-
     consumed_food = Consume.objects.filter(user=request.user)
 
     context = {
@@ -30,7 +29,7 @@ def delete_consume(request, id):
     if request.method == 'POST':
         consumed_food.delete()
         return redirect(index)
-    
+
     context = {
         'consumed_food': consumed_food,
     }

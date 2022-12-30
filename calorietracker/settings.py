@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-13r)p*@5t4ifox$jln8gu)aq@%#mv&c@6!s&d(po%%csx6!8!*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -75,16 +76,26 @@ WSGI_APPLICATION = 'calorietracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'calorie_tracker',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Darasimi302',
+#         'HOST': 'localhost',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'calorie_tracker',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'Darasimi302',
-        'HOST': 'localhost',
+        'PASSWORD': 'AeAOFR25M2k2s8LsdobY',
+        'HOST': 'containers-us-west-32.railway.app',
+        'PORT': '6273',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
